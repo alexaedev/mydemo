@@ -1,1 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ella Martinez · E-Commerce &amp; Product Listing Specialist</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
 
+        :root {
+            --bg-body: #0a0e1a;
+            --bg-card: rgba(18, 24, 40, 0.65);
+            --bg-soft: rgba(15, 21, 34, 0.5);
+            --bg-elevated: rgba(30, 40, 64, 0.45);
+            --border-light: rgba(30, 40, 64, 0.3);
+            --text-primary: #f0e9d8;
+            --text-secondary: #c4bda8;
+            --text-muted: #7a7a8a;
+            --accent-primary: #d4a853;
+            --accent-secondary: #b8943e;
+            --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.65);
+            --nav-height: 64px;
+            --badge-color: #d4a853;
+            --badge-bg: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Lenis smooth scroll styles */
+        html.lenis {
+            height: auto;
+        }
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .bg-body { background-color: var(--bg-body); }
+        .bg-card { background-color: var(--bg-card); }
+        .bg-soft { background-color: var(--bg-soft); }
+        .bg-elevated { background-color: var(--bg-elevated); }
+        .border-soft { border-color: var(--border-light); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-muted { color: var(--text-muted); }
+
+        .accent-primary { color: var(--accent-primary); }
+        .accent-secondary { color: var(--accent-secondary); }
+        .bg-accent-primary { background-color: var(--accent-primary); }
+        .bg-accent-secondary { background-color: var(--accent-secondary); }
+
+        /* ===== HERO SECTION ===== */
+        .hero-bg {
+            position: relative;
+            z-index: 1;
+            padding-top: var(--nav-height);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a2035 50%, #0d1322 100%);
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(212, 168, 83, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(184, 148, 62, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-centered {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: calc(100vh - var(--nav-height));
+            padding: 60px 5% 80px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 16px rgba(212, 168, 83, 0.2);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212, 168, 83, 0.3);
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--accent-primary);
+            color: var(--accent-primary);
+            background: transparent;
+            transition: all 0.2s ease;
+        }
+        .btn-outline:hover {
+            background: var(--accent-primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .badge {
+            background: var(--badge-bg);
+            color: var(--badge-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(212, 168, 83, 0.15);
+            display: inline-block;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .photo-frame {
+            width: 380px;
+            height: 480px;
+            border-radius: 40% 40% 20% 20% / 50% 50% 20% 20%;
+            background: linear-gradient(135deg, var(--bg-soft), var(--border-light));
+            border: 2px solid rgba(212, 168, 83, 0.15);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        /* ===== STATS CARDS ===== */
+        .stat-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-hover);
+        }
+        .stat-card .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+        }
+        .stat-card .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* ===== SERVICES ===== */
+        .service-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-hover);
+        }
+        .service-card .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ===== PORTFOLIO CARDS ===== */
+        .portfolio-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 1.75rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-hover);
+        }
+        .portfolio-card .product-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(212, 168, 83, 0.05), rgba(184, 148, 62, 0.02));
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .portfolio-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .portfolio-card .product-meta {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .portfolio-card .product-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.75rem;
+        }
+        .portfolio-card .product-tag {
+            background: rgba(212, 168, 83, 0.12);
+            color: var(--accent-primary);
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        .contact-method:hover {
+            transform: translateX(6px);
+            border-color: var(--accent-primary);
+        }
+        .contact-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text-secondary);
+        }
+
+        .footer-bg {
+            background: rgba(10, 14, 26, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(30, 40, 64, 0.2);
+        }
+        footer .quote {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-style: italic;
+            text-align: center;
+            padding-top: 0.75rem;
+            margin-bottom: 0;
+        }
+        footer .quote span {
+            color: var(--badge-color);
+        }
+        footer .copyright {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 20px;
+            margin-top: 0;
+        }
+
+        .floating-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 10px 30px rgba(212, 168, 83, 0.2);
+            z-index: 50;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .floating-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(212, 168, 83, 0.3);
+        }
+
+        .scroll-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        .scroll-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 168, 83, 0.2);
+            background: transparent;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+        }
+        .scroll-dot.active {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: scale(1.4);
+            box-shadow: 0 0 20px rgba(212, 168, 83, 0.15);
+        }
+        .scroll-dot:hover {
+            border-color: var(--accent-primary);
+            transform: scale(1.2);
+        }
+
+        .hero-centered .badge {
+            margin-bottom: 1.5rem;
+        }
+        .hero-centered h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+        }
+        .hero-centered .sub {
+            font-size: clamp(1rem, 1.3vw, 1.3rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+        }
+        .hero-centered .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .hero-centered .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .intro-section {
+            position: relative;
+            z-index: 2;
+            margin-top: -60px;
+            padding: 60px 5% 80px;
+            background: var(--bg-soft);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 30px 30px 0 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 -20px 60px rgba(0,0,0,0.15);
+            will-change: transform;
+            transform: translateY(0);
+            transition: none;
+            border-top: 1px solid rgba(30, 40, 64, 0.15);
+        }
+        .intro-section .intro-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .intro-section .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .intro-section .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-top: 2rem;
+        }
+        .intro-section h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+        .intro-section .text {
+            font-size: clamp(1rem, 1.1vw, 1.2rem);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 600px;
+        }
+        .intro-section .text:first-of-type {
+            margin-top: 1.5rem;
+        }
+        .intro-section .text:last-of-type {
+            margin-top: 1rem;
+        }
+        .intro-photo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .intro-photo .photo-frame {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            aspect-ratio: 4/5;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+            background: rgba(10, 14, 26, 0.85) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border-bottom: 1px solid rgba(30, 40, 64, 0.2) !important;
+            height: var(--nav-height) !important;
+            transition: box-shadow 0.3s ease !important;
+            will-change: transform;
+        }
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+        }
+        .nav-left {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        .nav-center {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .nav-center a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-center a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+        .nav-center a:hover::after,
+        .nav-center a.active::after {
+            width: 100%;
+        }
+        .nav-center a:hover {
+            color: var(--accent-primary);
+        }
+        .nav-center a.active {
+            color: var(--accent-primary);
+        }
+        .nav-right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .availability-badge {
+            background: rgba(15, 21, 34, 0.5);
+            color: var(--text-secondary);
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid var(--border-light);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        #mobile-menu {
+            position: fixed;
+            top: var(--nav-height);
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(10, 14, 26, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(30, 40, 64, 0.2);
+            padding: 1.5rem 2rem;
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        #mobile-menu:not(.hidden) {
+            display: flex;
+        }
+
+        section:not(#home) {
+            background: rgba(10, 14, 26, 0.3) !important;
+            backdrop-filter: blur(6px) !important;
+            -webkit-backdrop-filter: blur(6px) !important;
+            border-top: 1px solid rgba(30, 40, 64, 0.1);
+            border-bottom: 1px solid rgba(30, 40, 64, 0.1);
+        }
+
+        /* ===== STATS GRID ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 20px;
+        }
+
+        .connect-sidebar {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            min-height: 300px;
+        }
+        .connect-sidebar .connect-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .connect-sidebar .connect-title .gold {
+            color: var(--accent-primary);
+        }
+        .connect-sidebar .connect-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            background: rgba(212, 168, 83, 0.12);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-3px) scale(1.05);
+        }
+        .connect-sidebar .btn-connect {
+            margin-top: 10px;
+            padding: 14px 30px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            max-width: 220px;
+        }
+        .connect-sidebar .btn-connect:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 35px rgba(212, 168, 83, 0.3);
+        }
+        .connect-sidebar .availability {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .connect-sidebar .availability .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulseDot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(212, 168, 83, 0.03) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(184, 148, 62, 0.03) 0%, transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @media (max-width: 992px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .connect-sidebar {
+                min-height: auto;
+                padding: 30px 20px;
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .connect-sidebar .btn-connect {
+                margin: 10px auto 0;
+            }
+            .connect-sidebar .availability {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            .photo-frame {
+                width: 260px !important;
+                height: 340px !important;
+                margin: 0 auto !important;
+            }
+            .nav-center {
+                display: none !important;
+            }
+            .nav-right .availability-badge {
+                display: none !important;
+            }
+            .scroll-dots {
+                right: 15px !important;
+                gap: 8px !important;
+            }
+            .scroll-dot {
+                width: 8px !important;
+                height: 8px !important;
+            }
+            .intro-section .intro-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .intro-section {
+                margin-top: -20px;
+                border-radius: 20px 20px 0 0;
+                transform: translateY(0);
+            }
+            .intro-photo .photo-frame {
+                max-width: 280px;
+            }
+            .hero-centered h1 {
+                font-size: clamp(2.5rem, 8vw, 3.5rem);
+            }
+            .hero-centered .stats-row {
+                gap: 1rem;
+            }
+            #mobile-menu {
+                padding: 1rem 1.5rem;
+            }
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .connect-sidebar {
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-centered h1 {
+                font-size: 2.2rem;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Hire Me Button -->
+    <a href="#contact" class="floating-btn hidden md:flex items-center gap-2 shadow-lg">
+        <i class="fas fa-shopping-cart mr-1"></i> Hire Me
+    </a>
+
+    <!-- Scroll Dots -->
+    <div class="scroll-dots" id="scrollDots">
+        <div class="scroll-dot active" data-index="0"></div>
+        <div class="scroll-dot" data-index="1"></div>
+        <div class="scroll-dot" data-index="2"></div>
+        <div class="scroll-dot" data-index="3"></div>
+        <div class="scroll-dot" data-index="4"></div>
+        <div class="scroll-dot" data-index="5"></div>
+        <div class="scroll-dot" data-index="6"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-full">
+            <div class="nav-container">
+                <div class="nav-left">
+                    <span class="text-2xl font-bold">
+                        <span class="text-[#d4a853]">EM</span>
+                        <span class="text-[#b8943e]">.</span>
+                    </span>
+                </div>
+                <div class="nav-center">
+                    <a href="#home" class="active">Home</a>
+                    <a href="#intro">Intro</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="nav-right">
+                    <span class="availability-badge hidden sm:inline-flex">
+                        <span class="icon">✦</span> Available Worldwide · Remote
+                    </span>
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-full hover:bg-[#1e2840] transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden">
+        <a href="#home" class="hover:text-[#d4a853] py-1">Home</a>
+        <a href="#intro" class="hover:text-[#d4a853] py-1">Intro</a>
+        <a href="#about" class="hover:text-[#d4a853] py-1">About</a>
+        <a href="#services" class="hover:text-[#d4a853] py-1">Services</a>
+        <a href="#portfolio" class="hover:text-[#d4a853] py-1">Portfolio</a>
+        <a href="#contact" class="hover:text-[#d4a853] py-1">Contact</a>
+        <a href="#contact" class="mt-2 btn-primary text-white px-4 py-2 rounded-full text-center">Hire Me</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg">
+        <div class="hero-centered">
+            <div class="badge">🛍️ E-Commerce · Product Listing Specialist</div>
+            <h1>
+                Turn Browsers Into<br>
+                <span style="color:var(--accent-primary);">Buyers</span>
+            </h1>
+            <p class="sub">
+                I create product listings that convert — compelling descriptions, optimized keywords, 
+                and high-converting visuals that make your products impossible to ignore.
+            </p>
+            <div class="buttons">
+                <a href="#contact" class="btn-primary">Let's Work Together</a>
+                <a href="#portfolio" class="btn-outline">See My Work</a>
+            </div>
+            <div class="stats-row">
+                <span>✓ 500+ Products Listed</span>
+                <span>✓ 30+ Brands</span>
+                <span>✓ 100% Remote</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="intro-inner">
+            <div class="label">01 — meet Ella</div>
+            <div class="intro-grid">
+                <div>
+                    <h2>Product listings that sell, not just describe.</h2>
+                    <p class="text">Most e-commerce stores struggle with product listings that don't convert. I believe great listings tell a story — they connect with the customer, highlight benefits, and create urgency.</p>
+                    <p class="text">I don't just write descriptions and upload photos — I optimize every element of your product page to maximize conversions and build trust with your customers.</p>
+                </div>
+                <div class="intro-photo">
+                    <div class="photo-frame">
+                        <img src="./images/ella.jpg" alt="Ella Martinez" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:8rem;text-align:center;line-height:1;color:#d4a853;\'>🛍️</div>';" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl text-[#f0e9d8]">My <span class="text-[#d4a853]">Impact</span></h2>
+                <p class="text-[#c4bda8] mt-2">Numbers that speak for themselves.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Products Listed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">Brands Served</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">250%</div>
+                    <div class="stat-label">Avg. Conversion Increase</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl text-[#f0e9d8]">Hi, I'm <span class="text-[#d4a853]">Ella</span> <span class="text-[#b8943e]">Martinez</span></h2>
+                <p class="text-[#c4bda8] max-w-2xl mx-auto mt-2">An E-Commerce Specialist who turns product pages into sales machines.</p>
+            </div>
+            <div class="about-grid">
+                <div>
+                    <p class="text-[#c4bda8] mb-4">
+                        I'm a <strong class="text-[#f0e9d8]">Product Listing &amp; E-Commerce Specialist</strong> 
+                        with a passion for helping brands sell more online. With experience in 
+                        <strong class="text-[#d4a853]">Shopify, Amazon, and WooCommerce</strong>, 
+                        I create product listings that don't just inform — they convert.
+                    </p>
+                    <p class="text-[#c4bda8]">
+                        From compelling copywriting to visual optimization, I handle everything 
+                        that makes a product page irresistible. I believe every product has a story — 
+                        and I know how to tell it in a way that drives sales.
+                    </p>
+                    <div class="grid grid-cols-2 gap-2 mt-4">
+                        <div class="flex items-center gap-2 text-[#c4bda8]"><span class="text-[#d4a853]">✓</span> Shopify Expert</div>
+                        <div class="flex items-center gap-2 text-[#c4bda8]"><span class="text-[#d4a853]">✓</span> Amazon FBA</div>
+                        <div class="flex items-center gap-2 text-[#c4bda8]"><span class="text-[#d4a853]">✓</span> Product Photography</div>
+                        <div class="flex items-center gap-2 text-[#c4bda8]"><span class="text-[#d4a853]">✓</span> SEO Copywriting</div>
+                        <div class="flex items-center gap-2 text-[#c4bda8]"><span class="text-[#d4a853]">✓</span> A+ Content</div>
+                        <div class="flex items-center gap-2 text-[#c4bda8]"><span class="text-[#d4a853]">✓</span> Market Research</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="about-card" style="background:var(--bg-card); backdrop-filter:blur(12px); border:1px solid var(--border-light); border-radius:20px; padding:2.5rem;">
+                        <h3 class="text-xl font-bold mb-4 text-[#f0e9d8]">Why Work <span class="text-[#d4a853]">With</span> <span class="text-[#b8943e]">Me</span></h3>
+                        <ul class="space-y-3 text-[#c4bda8]">
+                            <li class="flex gap-2"><span class="text-[#d4a853]">✦</span> <strong>Proven track record</strong> — 500+ products optimized</li>
+                            <li class="flex gap-2"><span class="text-[#d4a853]">✦</span> <strong>Data-driven approach</strong> — I optimize for conversions</li>
+                            <li class="flex gap-2"><span class="text-[#d4a853]">✦</span> <strong>Multi-platform expertise</strong> — Shopify, Amazon, WooCommerce</li>
+                            <li class="flex gap-2"><span class="text-[#d4a853]">✦</span> <strong>End-to-end service</strong> — From photos to copy to launch</li>
+                        </ul>
+                        <div class="mt-6 p-4 rounded-xl" style="background:rgba(212,168,83,0.08); border:1px solid rgba(212,168,83,0.12);">
+                            <p class="text-[#d4a853] font-medium">💡 "Every product has a story. I help you tell it in a way that sells."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl text-[#f0e9d8]">What <span class="text-[#d4a853]">I Do</span></h2>
+                <p class="text-[#c4bda8] mt-2">End-to-end e-commerce solutions for your brand.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="service-icon">📝</span>
+                    <h3>Product Listing Optimization</h3>
+                    <p>Compelling product titles, bullet points, and descriptions that drive sales and improve SEO rankings.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">📸</span>
+                    <h3>Product Photography &amp; Visuals</h3>
+                    <p>High-quality product images, lifestyle shots, and A+ content that make your products stand out.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">📊</span>
+                    <h3>Market Research &amp; Competitor Analysis</h3>
+                    <p>Deep-dive research to position your products effectively and find the winning angle.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🔍</span>
+                    <h3>Keyword Research &amp; SEO</h3>
+                    <p>Strategic keyword placement to ensure your products are found by the right customers.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">🛒</span>
+                    <h3>Shopify &amp; Amazon Store Management</h3>
+                    <p>Full store setup, product uploads, and ongoing optimization for maximum sales.</p>
+                </div>
+                <div class="service-card">
+                    <span class="service-icon">📈</span>
+                    <h3>Conversion Rate Optimization</h3>
+                    <p>A/B testing, UX improvements, and data analysis to increase your conversion rates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl text-[#f0e9d8]">Featured <span class="text-[#d4a853]">Work</span></h2>
+                <p class="text-[#c4bda8] mt-2">Projects that showcase my product listing expertise.</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="product-image">📱</div>
+                    <h4>Premium Tech Gadget</h4>
+                    <p class="product-meta">Shopify · 3 Products</p>
+                    <div class="product-tags">
+                        <span class="product-tag">Product Photography</span>
+                        <span class="product-tag">SEO Copywriting</span>
+                        <span class="product-tag">+250% Sales</span>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="product-image">🧴</div>
+                    <h4>Luxury Skincare Brand</h4>
+                    <p class="product-meta">Amazon · 15 Products</p>
+                    <div class="product-tags">
+                        <span class="product-tag">A+ Content</span>
+                        <span class="product-tag">Keyword Research</span>
+                        <span class="product-tag">Best Seller</span>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="product-image">👟</div>
+                    <h4>Eco-Friendly Footwear</h4>
+                    <p class="product-meta">WooCommerce · 8 Products</p>
+                    <div class="product-tags">
+                        <span class="product-tag">Store Setup</span>
+                        <span class="product-tag">Lifestyle Photos</span>
+                        <span class="product-tag">200% ROI</span>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="product-image">🍵</div>
+                    <h4>Organic Tea Collection</h4>
+                    <p class="product-meta">Shopify · 12 Products</p>
+                    <div class="product-tags">
+                        <span class="product-tag">Brand Storytelling</span>
+                        <span class="product-tag">Visual Content</span>
+                        <span class="product-tag">300% Growth</span>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="product-image">💎</div>
+                    <h4>Handmade Jewelry</h4>
+                    <p class="product-meta">Amazon · 20 Products</p>
+                    <div class="product-tags">
+                        <span class="product-tag">Premium A+</span>
+                        <span class="product-tag">Competitor Analysis</span>
+                        <span class="product-tag">Top 1%</span>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <div class="product-image">🏋️</div>
+                    <h4>Fitness Equipment Line</h4>
+                    <p class="product-meta">Shopify · 6 Products</p>
+                    <div class="product-tags">
+                        <span class="product-tag">Video Content</span>
+                        <span class="product-tag">Conversion Optimization</span>
+                        <span class="product-tag">500+ Reviews</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="contact-wrapper">
+                <div>
+                    <h2 class="text-3xl text-[#f0e9d8]">Get in <span class="text-[#d4a853]">Touch</span></h2>
+                    <p class="text-[#c4bda8] text-sm mt-1 mb-6">Ready to turn your product listings into sales machines? Let's talk.</p>
+                    <div class="space-y-3">
+                        <a href="mailto:ella@ecomlistings.com" class="contact-method">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div><span class="text-xs text-[#7a7a8a]">Email</span><br><strong class="text-[#f0e9d8]">ella@ecomlistings.com</strong></div>
+                        </a>
+                        <a href="#" class="contact-method">
+                            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                            <div><span class="text-xs text-[#7a7a8a]">WhatsApp</span><br><strong class="text-[#f0e9d8]">+63 9** **** ***</strong></div>
+                        </a>
+                        <a href="#" class="contact-method">
+                            <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+                            <div><span class="text-xs text-[#7a7a8a]">LinkedIn</span><br><strong class="text-[#f0e9d8]">Ella Martinez</strong></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="connect-sidebar">
+                    <div class="connect-title">Let's <span class="gold">Build</span> Your Store</div>
+                    <div class="connect-desc">
+                        I'm currently available for e-commerce projects. Whether you're launching a new store or optimizing existing listings — let's make your products sell.
+                    </div>
+                    <div class="social-links">
+                        <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank" aria-label="Shopify"><i class="fab fa-shopify"></i></a>
+                    </div>
+                    <a href="mailto:ella@ecomlistings.com" class="btn-connect">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Start Selling
+                    </a>
+                    <div class="availability">
+                        <span class="dot"></span>
+                        <span>Available for projects</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-bg text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <span class="text-2xl font-bold text-white">EM<span class="text-[#b8943e]">.</span></span>
+                <p class="text-xs text-gray-400 mt-2">E-Commerce · Product Listing Specialist</p>
+            </div>
+            <div>
+                <h6 class="text-white font-semibold mb-3">Quick Links</h6>
+                <ul class="text-sm space-y-1">
+                    <li><a href="#home" class="hover:text-white">Home</a></li>
+                    <li><a href="#services" class="hover:text-white">Services</a></li>
+                    <li><a href="#portfolio" class="hover:text-white">Portfolio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h6 class="text-white font-semibold mb-3">Services</h6>
+                <ul class="text-sm space-y-1">
+                    <li>Product Listing Optimization</li>
+                    <li>Shopify Management</li>
+                    <li>Amazon FBA</li>
+                </ul>
+            </div>
+            <div>
+                <h6 class="text-white font-semibold mb-3">Contact</h6>
+                <p class="text-sm">ella@ecomlistings.com</p>
+                <p class="text-sm">+63 9** **** ***</p>
+                <div class="flex gap-3 mt-2 text-xl">
+                    <i class="fas fa-envelope"></i>
+                    <i class="fab fa-whatsapp"></i>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+            </div>
+        </div>
+        <div class="quote-wrapper max-w-7xl mx-auto px-6 lg:px-8 mt-6">
+            <div class="quote">
+                "Great product listings don't just describe — they sell."
+                <span>— Ella Martinez</span>
+            </div>
+            <div class="copyright">
+                © 2026 Ella Martinez. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lenis Library -->
+    <script src="https://unpkg.com/lenis@1.3.17/dist/lenis.min.js">
+    </script>
+
+    <script>
+        // =============================================
+        // LENIS SMOOTH SCROLL
+        // =============================================
+
+        const lenis = new Lenis({
+            duration: 0.6,
+            easing: (t) => {
+                return 1 - Math.pow(1 - t, 1.8);
+            },
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 1.4,
+            touchMultiplier: 1.8,
+            infinite: false,
+            syncTouch: true,
+            lerp: 0.06,
+            normalizeWheel: true,
+        });
+
+        lenis.on('scroll', (e) => {
+            updateUI(e);
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        window.lenis = lenis;
+        window.smoothScroll = lenis;
+
+        // =============================================
+        // UI UPDATE FUNCTIONS
+        // =============================================
+
+        const sections = document.querySelectorAll('section[id]');
+        const dots = document.querySelectorAll('.scroll-dot');
+        const navLinks = document.querySelectorAll('.nav-center a');
+        const nav = document.querySelector('nav');
+        const intro = document.querySelector('.intro-section');
+
+        function updateUI(e) {
+            const scrollY = e.animatedScroll || window.pageYOffset || window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            if (intro) {
+                const maxScroll = windowHeight * 1.0;
+                const progress = Math.min(scrollY / maxScroll, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 1.5);
+                const maxTranslate = -120;
+                const translateY = maxTranslate * easeOut;
+                intro.style.transform = `translateY(${translateY}px)`;
+            }
+
+            let activeIndex = 0;
+            sections.forEach((section, i) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < windowHeight / 2) {
+                    activeIndex = i;
+                }
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === activeIndex);
+            });
+
+            navLinks.forEach((link, i) => {
+                link.classList.toggle('active', i === activeIndex);
+            });
+
+            if (nav) {
+                nav.classList.toggle('scrolled', scrollY > 50);
+            }
+        }
+
+        // =============================================
+        // NAVIGATION
+        // =============================================
+
+        function scrollToSection(index) {
+            const target = sections[index];
+            if (target) {
+                const offset = 80;
+                lenis.scrollTo(target, {
+                    offset: -offset,
+                    duration: 0.6,
+                    easing: (t) => 1 - Math.pow(1 - t, 1.8),
+                });
+            }
+        }
+
+        window.scrollToSection = scrollToSection;
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => scrollToSection(i));
+        });
+
+        document.querySelectorAll('.nav-center a, #mobile-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    lenis.scrollTo(target, {
+                        offset: -offset,
+                        duration: 0.6,
+                        easing: (t) => 1 - Math.pow(1 - t, 1.8),
+                    });
+                }
+                document.getElementById('mobile-menu')?.classList.add('hidden');
+            });
+        });
+
+        // =============================================
+        // MOBILE MENU
+        // =============================================
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // =============================================
+        // INITIAL UI UPDATE
+        // =============================================
+
+        setTimeout(() => {
+            updateUI({ animatedScroll: window.pageYOffset || window.scrollY });
+        }, 100);
+
+        console.log('✅ Lenis smooth scroll initialized (perfect balance mode)');
+        console.log('✅ Navbar permanently fixed');
+        console.log('✅ E-Commerce portfolio ready');
+        console.log('✅ Dark Navy & Gold theme applied');
+    </script>
+
+</body>
+</html>
